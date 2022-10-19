@@ -19,8 +19,8 @@ jobs:
        fetch-depth: 0
    - name: print trigger details
      run : |
-      ref: ${{ github.event.client_payload.ref }}
-      echo ${{ github.event.client_payload.sha }}
+      echo ${{ github.event.client_payload.github.action }}
+      echo ${{ github.event.client_payload.github.actor }}
       
        node-version: ${{ matrix.node-version }}
       cache: 'npm'
