@@ -16,16 +16,17 @@ jobs:
    steps:
    - uses: actions/checkout@v3
      with:
-       ref: ${{ github.event.client_payload.ref }}
-       run: echo ${{ github.event.client_payload.sha }}
+       fetch-depth: 0
+   - name: print trigger details
+     run : |
+      ref: ${{ github.event.client_payload.ref }}
+      echo ${{ github.event.client_payload.sha }}
+      
        node-version: ${{ matrix.node-version }}
-       cache: 'npm'
+      cache: 'npm'
    - run: npm ci
    - run: npm run build --if-present
    - run: npm test
-   - name: Upload Artifact GitHub Action
-     uses: actions/upload-artifact@v2
-     with: 
-        name: artifacts
-        path: node_modules
+   
      
+    
